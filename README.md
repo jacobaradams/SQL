@@ -1,0 +1,1 @@
+This intends to serve as a sample of what I can accomplish with SQL. The queries made were using Microsoft SQL Server Management Studio. In addition to the SQL queries, the created tables have been analyzed using Microsoft PowerBI.
