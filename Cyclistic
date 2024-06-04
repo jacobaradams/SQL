@@ -58,3 +58,5 @@ select * into member_status_usage_monthly
 --checking new table for import into PowerBI
 
 select * from member_status_usage_monthly
+
+--for analysis with SQL only, the following query was made. This tells us the story that usage is at it's highest June through August. T
