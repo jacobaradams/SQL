@@ -1,0 +1,60 @@
+--This is the Google Data Analytics Professional Certificate Program Portfolio Project. The sample data provided (URL provided below) follows the Bike Share usage of fictional company, Cyclistic. The 
+--stakeholders (Cyclistic Marketing) are interested in the correlation between Bike Share usage and membership status. Since members bring in the larger percentage of the companies revenue, it is desired to
+--find a way to convert more casual riders to members. For this project, the previous 12 months of Bike Share data have been combined for analysis.
+
+--https://divvybikes.com/data-license-agreement
+--https://divvy-tripdata.s3.amazonaws.com/index.html
+
+--use a union to combine data from all months of ride usage for the past year.
+
+select * 
+	into previous_year_rides 
+from 
+	(select * from 
+	[202305-divvy-tripdata]
+	union
+	select * from
+	[202306-divvy-tripdata]
+	union
+	select * from 
+	[202307-divvy-tripdata]
+	union
+	select * from 
+	[202308-divvy-tripdata]
+	union
+	select * from 
+	[202309-divvy-tripdata]
+	union
+	select * from
+	[202310-divvy-tripdata]
+	union 
+	select * from
+	[202311-divvy-tripdata]
+	union
+	select * from
+	[202312-divvy-tripdata]
+	union
+	select * from
+	[202401-divvy-tripdata]
+	union
+	select * from
+	[202402-divvy-tripdata]
+	union
+	select * from
+	[202403-divvy-tripdata]
+	union
+	select * from
+	[202404-divvy-tripdata])a
+
+
+--generating a new table, using distinct to clean any possible duplicate entries per ride, to show the amount of users who use the product each month, categorized by either members or casual riders.
+
+select * into member_status_usage_monthly
+	from 
+	(select count(distinct ride_id) as usage, member_casual, datepart(month,started_at) as month_usage
+	from previous_year_rides
+	group by datepart(month,started_at), member_casual)a
+
+--checking new table for import into PowerBI
+
+select * from member_status_usage_monthly
