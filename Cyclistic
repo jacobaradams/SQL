@@ -1,6 +1,6 @@
 --This is the Google Data Analytics Professional Certificate Program Portfolio Project. The sample data provided (URL provided below) follows the Bike Share usage of fictional company, Cyclistic. The 
 --stakeholders (Cyclistic Marketing) are interested in the correlation between Bike Share usage and membership status. Since members bring in the larger percentage of the companies revenue, it is desired to
---find a way to convert more casual riders to members. For this project, the previous 12 months of Bike Share data have been combined for analysis.
+--find a way to convert more casual riders to members. For this project, the previous 12 months (May 2023 - April 2024) of Bike Share data have been combined for analysis.
 
 --https://divvybikes.com/data-license-agreement
 --https://divvy-tripdata.s3.amazonaws.com/index.html
@@ -59,4 +59,9 @@ select * into member_status_usage_monthly
 
 select * from member_status_usage_monthly
 
---for analysis with SQL only, the following query was made. This tells us the story that usage is at it's highest June through August. T
+--for analysis with SQL only, the following query was made. This tells us the story that usage is at it's highest June through August. These findings prompt
+--me to suggest a discounted membership start-up fee during the months of June, July, and August, with contractual aggreement to 1 year minimum subscription.
+
+select sum(usage), month_usage from member_status_usage_monthly
+group by month_usage
+order by 1 desc
